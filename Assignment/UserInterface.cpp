@@ -72,43 +72,38 @@ void UserInterface::highlightExitGame(SDL_Renderer * renderer) {
 	text.exitGame(true, renderer);
 }
 
-void UserInterface::storyPage1(SDL_Surface * surface, SDL_Texture * texture, SDL_Renderer* renderer, SDL_Window* window, SDL_Event* event)
-{
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); //black
-	SDL_RenderClear(renderer); //clear screen with black
-	surface = IMG_Load("assets/pikachu2.png");
+void UserInterface::storyPage1(SDL_Surface * surface, SDL_Texture * texture, SDL_Renderer* renderer, SDL_Window* window ){
+
+	// image 1
+	surface = IMG_Load("assets/pika.png");
 
 	texture = SDL_CreateTextureFromSurface(renderer, surface);
-
 
 	SDL_Rect image1;
 	image1.x = 0;
 	image1.y = 0;
 	SDL_Rect destImage1;
-	destImage1.x = 200;
-	destImage1.y = 270;
+	destImage1.x = 180;
+	destImage1.y = 170;
 
 	SDL_QueryTexture(texture, NULL, NULL, &image1.w, &image1.h);
 
 	destImage1.w = image1.w;
 	destImage1.h = image1.h;
-	SDL_RenderClear(renderer);
+
 	SDL_RenderCopy(renderer, texture, &image1, &destImage1);
 
 	text.storyPage1(renderer);
+	text.nextPageText(renderer);
 	SDL_RenderPresent(renderer);
 
-	SDL_RenderClear(renderer);
+
 }
 
-void UserInterface::storyPage2(SDL_Surface* surface, SDL_Texture* texture, SDL_Renderer* renderer, SDL_Window* window, SDL_Event* event) {
-	
-
-	SDL_SetRenderDrawColor( renderer, 0, 0, 0, 255 );
-	SDL_RenderClear(renderer);
+void UserInterface::storyPage2(SDL_Surface* surface, SDL_Texture* texture, SDL_Renderer* renderer, SDL_Window* window ) {
 
 	// image 2
-	surface = IMG_Load("assets/team.png");
+	surface = IMG_Load("assets/teamrocket.png");
 
 	texture = SDL_CreateTextureFromSurface(renderer, surface);
 	SDL_Rect image2;
@@ -116,28 +111,23 @@ void UserInterface::storyPage2(SDL_Surface* surface, SDL_Texture* texture, SDL_R
 	image2.y = 0;
 	SDL_Rect destImage2;
 	destImage2.x = 200;
-	destImage2.y = 270;
+	destImage2.y = 170;
 
 	SDL_QueryTexture(texture, NULL, NULL, &image2.w, &image2.h);
 
-	destImage2.w = image2.w;
-	destImage2.h = image2.h;
-	SDL_RenderClear(renderer);
+	destImage2.w = image2.w*1.2;
+	destImage2.h = image2.h*1.2;
+
 	SDL_RenderCopy(renderer, texture, &image2, &destImage2);
 
 	text.storyPage2(renderer);
+	text.nextPageText(renderer);
 	SDL_RenderPresent(renderer);
-	SDL_RenderClear(renderer);
-
 }
 	
 
 
-void UserInterface::storyPage3(SDL_Surface* surface, SDL_Texture* texture, SDL_Renderer* renderer, SDL_Window* window, SDL_Event* event) {
-
-
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	SDL_RenderClear(renderer);
+void UserInterface::storyPage3(SDL_Surface* surface, SDL_Texture* texture, SDL_Renderer* renderer, SDL_Window* window ) {
 
 	// image 3
 
@@ -145,65 +135,52 @@ void UserInterface::storyPage3(SDL_Surface* surface, SDL_Texture* texture, SDL_R
 
 	texture = SDL_CreateTextureFromSurface(renderer, surface);
 
-
 	SDL_Rect image3;
 	image3.x = 0;
 	image3.y = 0;
 	SDL_Rect destImage3;
-	destImage3.x = 100;
+	destImage3.x = 120;
 	destImage3.y = 200;
 
 	SDL_QueryTexture(texture, NULL, NULL, &image3.w, &image3.h);
 
 	destImage3.w = image3.w;
 	destImage3.h = image3.h;
-	SDL_RenderClear(renderer);
 	SDL_RenderCopy(renderer, texture, &image3, &destImage3);
 
 	text.storyPage3(renderer);
+	text.nextPageText(renderer);
 	SDL_RenderPresent(renderer);
-	SDL_RenderClear(renderer);
-
-
 }
 
-void UserInterface::storyPage4(SDL_Surface* surface, SDL_Texture* texture, SDL_Renderer* renderer, SDL_Window* window, SDL_Event* event) {
-
-	
-
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	SDL_RenderClear(renderer);
+void UserInterface::storyPage4(SDL_Surface* surface, SDL_Texture* texture, SDL_Renderer* renderer, SDL_Window* window ) {
 
 	// image 4
 	surface = IMG_Load("assets/pop.png");
 
 	texture = SDL_CreateTextureFromSurface(renderer, surface);
 
-
 	SDL_Rect image4;
 	image4.x = 0;
 	image4.y = 0;
 	SDL_Rect destImage4;
 	destImage4.x = 200;
-	destImage4.y = 270;
+	destImage4.y = 180;
 
 	SDL_QueryTexture(texture, NULL, NULL, &image4.w, &image4.h);
 
-	destImage4.w = image4.w;
-	destImage4.h = image4.h;
-	SDL_RenderClear(renderer);
+	destImage4.w = image4.w*1;
+	destImage4.h = image4.h*1;
+
 	SDL_RenderCopy(renderer, texture, &image4, &destImage4);
 
 	text.storyPage4(renderer);
+	text.nextPageText(renderer);
 	SDL_RenderPresent(renderer);
-	SDL_RenderClear(renderer);
 
 }
 
-void UserInterface::storyPage5(SDL_Surface* surface, SDL_Texture* texture, SDL_Renderer* renderer, SDL_Window* window, SDL_Event* event) {
-
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	SDL_RenderClear(renderer);
+void UserInterface::storyPage5(SDL_Surface* surface, SDL_Texture* texture, SDL_Renderer* renderer, SDL_Window* window ) {
 
 	// image 5
 	
@@ -215,25 +192,27 @@ void UserInterface::storyPage5(SDL_Surface* surface, SDL_Texture* texture, SDL_R
 	image5.x = 0;
 	image5.y = 0;
 	SDL_Rect destImage5;
-	destImage5.x = 200;
-	destImage5.y = 270;
+	destImage5.x = 150;
+	destImage5.y = 200;
 
 	SDL_QueryTexture(texture, NULL, NULL, &image5.w, &image5.h);
 
 	destImage5.w = image5.w;
 	destImage5.h = image5.h;
-	SDL_RenderClear(renderer);
+
 	SDL_RenderCopy(renderer, texture, &image5, &destImage5);
 
 	text.storyPage5(renderer);
+	text.nextPageText(renderer);
 	SDL_RenderPresent(renderer);
 }
-/*
-SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
-SDL_Rect rect8 = { 0, 0, 640, 480 };
-SDL_RenderFillRect(renderer, &rect8);
-SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-SDL_Rect rect9 = { 5, 5, 630, 470 };
-SDL_RenderFillRect(renderer, &rect9);
-commit test number 3
-*/
+
+void UserInterface::border(SDL_Renderer * renderer){
+
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+	SDL_RenderClear(renderer);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	SDL_Rect rect = { 5, 5, 630, 470 };
+	SDL_RenderFillRect(renderer, &rect);
+
+}

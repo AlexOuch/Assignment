@@ -51,69 +51,88 @@ void MouseHandler::hoverMouse(SDL_Event * event, SDL_Renderer* renderer)
 }
 
 bool MouseHandler::clickStory(SDL_Event * event) { //click story function
+	bool mouse = false;
 	if (event->type == SDL_MOUSEBUTTONDOWN) {
 		if (event->button.button == SDL_BUTTON_LEFT) {
-			if (event->button.x >= 175 && event->button.x <= 465 && event->button.y >= 185 && event->button.y <= 235) {
-				leftMousePressedDown = true;
+			if (event->button.x >= 175 && event->button.x <= 465 && event->button.y >= 185 && event->button.y <= 235) { //if user clicks in this rectangle
+				mouse = true;
 			}
 		}
 	}
+	//if user didnt click in the rectangle
+	else
+		mouse = false;
+
 	if (event->type == SDL_MOUSEBUTTONUP) {
 		if (event->button.button == SDL_BUTTON_LEFT)
-			leftMousePressedDown = false;
+			mouse = false;
 	}
 
-	return leftMousePressedDown;
+	return mouse;
 
 }
 
 bool MouseHandler::clickStartGame(SDL_Event * event) { //click start game function
+	bool mouse = false;
 	if (event->type == SDL_MOUSEBUTTONDOWN) {
 		if (event->button.button == SDL_BUTTON_LEFT) {
-			if (event->button.x >= 175 && event->button.x <= 465 && event->button.y >= 255 && event->button.y <= 305) {
-				leftMousePressedDown = true;
+			if (event->button.x >= 175 && event->button.x <= 465 && event->button.y >= 255 && event->button.y <= 305) { //if user clicked in this rectangle
+				mouse = true;
 			}
 		}
 	}
+	//if user didnt click in the rectangle
+	else
+		mouse = false;
+
 	if (event->type == SDL_MOUSEBUTTONUP) {
 		if (event->button.button == SDL_BUTTON_LEFT)
-			leftMousePressedDown = false;
+			mouse = false;
 	}
 
-	return leftMousePressedDown;
+	return mouse;
 
 }
 
 bool MouseHandler::clickInstructions(SDL_Event * event) { //click story function
+	bool mouse = false;
 	if (event->type == SDL_MOUSEBUTTONDOWN) {
 		if (event->button.button == SDL_BUTTON_LEFT) {
-			if (event->button.x >= 175 && event->button.x <= 465 && event->button.y >= 325 && event->button.y <= 375) {
-				leftMousePressedDown = true;
+			if (event->button.x >= 175 && event->button.x <= 465 && event->button.y >= 325 && event->button.y <= 375) {//if user clicked in this rectangle
+				mouse = true;
 			}
 		}
 	}
+	//if user didnt click in the rectangle
+	else
+		mouse = false;
+
 	if (event->type == SDL_MOUSEBUTTONUP) {
 		if (event->button.button == SDL_BUTTON_LEFT)
-			leftMousePressedDown = false;
+			mouse = false;
 	}
 
-	return leftMousePressedDown;
+	return mouse;
 
 }
 
 bool MouseHandler::clickExitGame(SDL_Event * event) { //click story function
+	bool mouse = false;
 	if (event->type == SDL_MOUSEBUTTONDOWN) {
 		if (event->button.button == SDL_BUTTON_LEFT) {
-			if (event->button.x >= 175 && event->button.x <= 465 && event->button.y >= 395 && event->button.y <= 445) {
-				leftMousePressedDown = true;
+			if (event->button.x >= 175 && event->button.x <= 465 && event->button.y >= 395 && event->button.y <= 445) { //if user clicked in this rectangle
+				mouse = true;
 			}
 		}
 	}
+	else
+		mouse = false;
+
 	if (event->type == SDL_MOUSEBUTTONUP) {
 		if (event->button.button == SDL_BUTTON_LEFT)
-			leftMousePressedDown = false;
+			mouse = false;
 	}
 
-	return leftMousePressedDown;
+	return mouse;
 
 }

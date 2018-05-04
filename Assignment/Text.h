@@ -33,5 +33,7 @@ public:
 	void storyPage3(SDL_Renderer* renderer);
 	void storyPage4(SDL_Renderer* renderer);
 	void storyPage5(SDL_Renderer* renderer);
+	void nextPageText(SDL_Renderer* renderer);
+
 };
 

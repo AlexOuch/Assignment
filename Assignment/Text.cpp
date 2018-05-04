@@ -116,15 +116,15 @@ void Text::story(bool highlight, SDL_Renderer* renderer)
 
 void Text::storyPage1(SDL_Renderer* renderer) //text in page 1 of story
 {
-	font = TTF_OpenFont("assets/vermin_vibes_1989.ttf", 32);
+	font = TTF_OpenFont("assets/pokemon_font.ttf", 32);
 	
 	textColor = { 255, 255, 255, 255 };
 
-	textSurface = TTF_RenderText_Blended(font, "Once  upon  a  time  there  was  a  pikachu", textColor);
+	textSurface = TTF_RenderText_Blended_Wrapped(font, "Once  upon  a  time  there  was  a  pikachu", textColor, 540);
 	textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
 	SDL_FreeSurface(textSurface);
 
-	textDestination.x = 15;
+	textDestination.x = 50;
 	textDestination.y = 50;
 
 	SDL_QueryTexture(textTexture, NULL, NULL, &textDestination.w, &textDestination.h);
@@ -134,15 +134,15 @@ void Text::storyPage1(SDL_Renderer* renderer) //text in page 1 of story
 
 void Text::storyPage2(SDL_Renderer * renderer) //text in page 2 of story
 {
-	font = TTF_OpenFont("assets/vermin_vibes_1989.ttf", 32);
+	font = TTF_OpenFont("assets/pokemon_font.ttf", 32);
 
 	textColor = { 255, 255, 255, 255 };
 
-	textSurface = TTF_RenderText_Blended_Wrapped(font, "There  was  also  an  evil  gang  called Team Rocket", textColor, 600);
+	textSurface = TTF_RenderText_Blended_Wrapped(font, "There  was  also  an  evil  gang  called Team Rocket", textColor, 540);
 	textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
 	SDL_FreeSurface(textSurface);
 
-	textDestination.x = 15;
+	textDestination.x = 50;
 	textDestination.y = 50;
 
 	SDL_QueryTexture(textTexture, NULL, NULL, &textDestination.w, &textDestination.h);
@@ -151,15 +151,15 @@ void Text::storyPage2(SDL_Renderer * renderer) //text in page 2 of story
 
 void Text::storyPage3(SDL_Renderer * renderer) //text in page 3 of story
 {
-	font = TTF_OpenFont("assets/vermin_vibes_1989.ttf", 32);
+	font = TTF_OpenFont("assets/pokemon_font.ttf", 32);
 
 	textColor = { 255, 255, 255, 255 };
 
-	textSurface = TTF_RenderText_Blended_Wrapped(font, "Team rocket has been trying to catch pikachu for the last 20 years", textColor, 600);
+	textSurface = TTF_RenderText_Blended_Wrapped(font, "Team rocket has been trying to catch pikachu for the last 20 years", textColor, 540);
 	textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
 	SDL_FreeSurface(textSurface);
 
-	textDestination.x = 15;
+	textDestination.x = 50;
 	textDestination.y = 50;
 
 	SDL_QueryTexture(textTexture, NULL, NULL, &textDestination.w, &textDestination.h);
@@ -168,15 +168,15 @@ void Text::storyPage3(SDL_Renderer * renderer) //text in page 3 of story
 
 void Text::storyPage4(SDL_Renderer * renderer) //text in page 4 of story
 {
-	font = TTF_OpenFont("assets/vermin_vibes_1989.ttf", 32);
+	font = TTF_OpenFont("assets/pokemon_font.ttf", 32);
 
 	textColor = { 255, 255, 255, 255 };
 
-	textSurface = TTF_RenderText_Blended_Wrapped(font, "Today, they have finally succeeded", textColor, 600);
+	textSurface = TTF_RenderText_Blended_Wrapped(font, "Today, they have finally succeeded", textColor, 540);
 	textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
 	SDL_FreeSurface(textSurface);
 
-	textDestination.x = 15;
+	textDestination.x = 50;
 	textDestination.y = 50;
 
 	SDL_QueryTexture(textTexture, NULL, NULL, &textDestination.w, &textDestination.h);
@@ -185,18 +185,35 @@ void Text::storyPage4(SDL_Renderer * renderer) //text in page 4 of story
 
 void Text::storyPage5(SDL_Renderer * renderer) //text in page 5 of story
 {
-	font = TTF_OpenFont("assets/vermin_vibes_1989.ttf", 32);
+	font = TTF_OpenFont("assets/pokemon_font.ttf", 32);
 
 	textColor = { 255, 255, 255, 255 };
 
-	textSurface = TTF_RenderText_Blended_Wrapped(font, "Your job is to play as pikachu and escape from team rocket", textColor, 600);
+	textSurface = TTF_RenderText_Blended_Wrapped(font, "Your job is to play as pikachu and escape from team rocket", textColor, 540);
 	textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
 	SDL_FreeSurface(textSurface);
 
-	textDestination.x = 15;
+	textDestination.x = 50;
 	textDestination.y = 50;
 
 	SDL_QueryTexture(textTexture, NULL, NULL, &textDestination.w, &textDestination.h);
 	SDL_RenderCopy(renderer, textTexture, NULL, &textDestination);
+
 }
 
+void Text::nextPageText(SDL_Renderer * renderer) {
+
+	font = TTF_OpenFont("assets/pokemon_font.ttf", 16);
+
+	textColor = { 255, 255, 0, 255 };
+
+	textSurface = TTF_RenderText_Blended_Wrapped(font, "Press Spacebar to continue ->", textColor, 540);
+	textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+	SDL_FreeSurface(textSurface);
+
+	textDestination.x = 365;
+	textDestination.y = 445;
+
+	SDL_QueryTexture(textTexture, NULL, NULL, &textDestination.w, &textDestination.h);
+	SDL_RenderCopy(renderer, textTexture, NULL, &textDestination);
+}

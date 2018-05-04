@@ -79,12 +79,25 @@ int main(int argc, char **argv) {
 	SDL_Rect pikachuDestRect = { 0, 0, 144, 36 };
 	SDL_Surface* pikachuSurface = IMG_Load("assets/pikachu.png");
 
+	//transparent pikachu
 	SDL_SetColorKey(pikachuSurface, 1, SDL_MapRGB(pikachuSurface->format, 255, 255, 255));
 	SDL_Texture* pikachuSpriteSheetTransparent = SDL_CreateTextureFromSurface(renderer, pikachuSurface);
 	SDL_FreeSurface(pikachuSurface);
 
+	//initiate png image for the pikachu in story at page 5
+	SDL_Texture* pika5SpriteSheet = IMG_LoadTexture(renderer, "assets/pikachufront2.png");
+	SDL_Rect pika5ClipRect = { 0, 0, 34, 40 };
+	SDL_Rect pika5DestRect = { 0, 0, 136, 40 };
+	SDL_Surface* pika5Surface = IMG_Load("assets/pikachufront2.png");
+
+	//making the transparent image for page5 pikachu
+	SDL_SetColorKey(pika5Surface, 1, SDL_MapRGB(pika5Surface->format, 255, 255, 255));
+	SDL_Texture* pika5Transparent = SDL_CreateTextureFromSurface(renderer, pika5Surface);
+	SDL_FreeSurface(pika5Surface);
+	
 	//Animation objects
-	Animation pikachuAnim(pikachuSpriteSheetTransparent, renderer, 4, 36, 36, 0.1);
+	Animation pikachuAnim(pikachuSpriteSheetTransparent, renderer, 4, 36, 36, 0.1); //game pikachu
+	Animation pika5Anim(pika5Transparent, renderer, 4, 34, 40, 0.2); //pikachu in page5 of story
 
 	//setup time stuff
 	Uint32 lastUpdate = SDL_GetTicks();
@@ -93,7 +106,7 @@ int main(int argc, char **argv) {
 	list<Entity*>entities;
 	Hero* pikachu = new Hero();
 	pikachu->setAnimation(&pikachuAnim);
-	pikachu->setRenderer(renderer);
+	pikachu->setRenderer(renderer);;
 
 	//vector for starting position
 	Vector pikachuStartPos(0, 0);
@@ -111,9 +124,8 @@ int main(int argc, char **argv) {
 
 	//add out hero to the list
 	entities.push_back(pikachu);
-
+	
 	UserInterface userInterface;
-
 	Text text;
 
 	//game loop
@@ -125,7 +137,7 @@ int main(int argc, char **argv) {
 		lastUpdate = SDL_GetTicks();
 		
 		userInterface.menu(renderer);
-		
+
 		SDL_Event e;		
 		while (SDL_PollEvent(&e)) {			
 			mouseHandler.hoverMouse(&e, renderer);
@@ -136,23 +148,87 @@ int main(int argc, char **argv) {
 
 			if (clickStory) {
 				while (clickStory) {
+					
+					// page 1
+					bool page1 = true;
+					while (page1) {
+						userInterface.border(renderer);
+						userInterface.storyPage1(surface, texture, renderer, window); //output page 1
+						SDL_Event story;
+ 						while (SDL_PollEvent(&story)) {
+							if (story.type == SDL_KEYDOWN) { //if user presses space
+								if (story.key.keysym.scancode == SDL_SCANCODE_SPACE)
+									page1 = false; //exit page 1 loop
+							}
+						}
+					}
 
-					userInterface.storyPage1(surface, texture, renderer, window, &e);
-					system("pause");
-					userInterface.storyPage2(surface, texture, renderer, window, &e);
-					system("pause");
-					userInterface.storyPage3(surface, texture, renderer, window, &e);
-					system("pause");
-					userInterface.storyPage4(surface, texture, renderer, window, &e);
-					system("pause");
-					userInterface.storyPage5(surface, texture, renderer, window, &e);
-					system("pause");
+					// page 2
+					bool page2 = true;
+					while (page2) {
+						userInterface.border(renderer);
+						userInterface.storyPage2(surface, texture, renderer, window);
+						SDL_Event story;
+						while (SDL_PollEvent(&story)) {
+							if (story.type == SDL_KEYDOWN) {
+								if (story.key.keysym.scancode == SDL_SCANCODE_SPACE) 
+									page2 = false;
+							}
+						}
+					}
+
+					//page 3
+					bool page3 = true;
+					while (page3) {
+						userInterface.border(renderer);
+						userInterface.storyPage3(surface, texture, renderer, window);
+						SDL_Event story;
+						while (SDL_PollEvent(&story)) {
+							if (story.type == SDL_KEYDOWN) {
+								if (story.key.keysym.scancode == SDL_SCANCODE_SPACE) 
+									page3 = false;
+							}
+						}
+					}
+
+					//page 4
+					bool page4 = true;
+					while (page4) {
+						userInterface.border(renderer);
+						userInterface.storyPage4(surface, texture, renderer, window);
+						SDL_Event story;
+						while (SDL_PollEvent(&story)) {
+							if (story.type == SDL_KEYDOWN) {
+								if (story.key.keysym.scancode == SDL_SCANCODE_SPACE)
+									page4 = false;
+							}
+						}
+					}
+
+					//page 5
+					bool page5 = true;
+					while (page5) {
+						userInterface.border(renderer);
+						text.storyPage5(renderer);
+						text.nextPageText(renderer);
+						pika5Anim.update(DT);
+						pika5Anim.draw(240, 200, 4.0f);
+						SDL_RenderPresent(renderer);
+
+						SDL_Event story;
+						while (SDL_PollEvent(&story)) {
+							if (story.type == SDL_KEYDOWN) {
+								if (story.key.keysym.scancode == SDL_SCANCODE_SPACE)
+									page5 = false;
+							}
+						}
+					}
 
 					clickStory = false;
 
 				}
 			}
-			else if (clickStartGame) {
+			if (clickStartGame) {
 				while (clickStartGame) {
 
 					
@@ -200,42 +276,6 @@ int main(int argc, char **argv) {
 
 
 		}
-
-
-		
-		//animation stuff
-
-		
-		/*
-		//User input stuff
-		SDL_Event f;
-
-		while (SDL_PollEvent(&e)) {
-			//check if user has clicked on the close window button
-			if (e.type == SDL_QUIT)
-				loop = false;
-
-			if (e.type == SDL_KEYDOWN) { //check if user pressed a button
-				if (e.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
-					loop = false;
-			}
-
-			if (controllerHandler.controller != NULL)
-				controllerHandler.update(&e);
-			else
-				keyboardHandler.update(&e);
-
-			mouseHandler.update(&e);
-
-		}
-		
-		
-		for (list<Entity*>::iterator eIt = entities.begin(); eIt != entities.end(); eIt++) {
-			(*eIt)->update(DT);
-			(*eIt)->draw();
-		}
-		*/
-	
 		
 		SDL_RenderPresent(renderer);
 
