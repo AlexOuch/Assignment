@@ -1,0 +1,6 @@
+﻿  UserInterface.cpp
+  main.cpp
+c:\users\alex\source\repos\assignment\assignment\main.cpp(87): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\alex\source\repos\assignment\assignment\main.cpp(124): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  Assignment.vcxproj -> C:\Users\Alex\source\repos\Assignment\Debug\Assignment.exe
