@@ -235,4 +235,5 @@ SDL_RenderFillRect(renderer, &rect8);
 SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 SDL_Rect rect9 = { 5, 5, 630, 470 };
 SDL_RenderFillRect(renderer, &rect9);
+commit test
 */
